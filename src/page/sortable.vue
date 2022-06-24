@@ -7,7 +7,7 @@
 
     <v-main class="grey lighten-2">
       <v-container class="mt-5">
-        <div class="text-h4 text-center mb-2 mt-8">Sortable</div>
+        <div class="text-h4 text-center mb-2 mt-2">Sortable</div>
         <v-sheet class="pa-5 grey darken-5" tile>
             <v-row 
                 v-draggable="{ value: sort_items }"
@@ -100,7 +100,6 @@
     export default {
         data() {
             return {
-                
                 sort_items: [
                     {id: 1, name:"item 1", order:1},
                     {id: 2, name:"item 2", order:2},
