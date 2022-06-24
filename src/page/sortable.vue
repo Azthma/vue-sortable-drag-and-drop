@@ -100,6 +100,21 @@
     export default {
         data() {
             return {
+                
+                sort_items: [
+                    {id: 1, name:"item 1", order:1},
+                    {id: 2, name:"item 2", order:2},
+                    {id: 3, name:"item 3", order:3},
+                    {id: 4, name:"item 4", order:4},
+                    {id: 5, name:"item 5", order:5},
+                    {id: 6, name:"item 6", order:6},
+                    {id: 7, name:"item 7", order:7},
+                    {id: 8, name:"item 8", order:8},
+                    {id: 9, name:"item 9", order:9},
+                    {id: 10, name:"item 10", order:10},
+                    {id: 11, name:"item 11", order:11},
+                    {id: 12, name:"item 12", order:12}
+                ],
                 items: [
                     {id: 1, name:"item 1", list: 1},
                     {id: 2, name:"item 2", list: 1},
@@ -107,18 +122,9 @@
                     {id: 4, name:"item 4", list: 2},
                     {id: 5, name:"item 5", list: 2},
                     {id: 6, name:"item 6", list: 2}
-                ],
-                sort_items: [
-                    {id: 1, name:"item 1", order:1},
-                    {id: 2, name:"item 2", order:2},
-                    {id: 3, name:"item 3", order:3},
-                    {id: 4, name:"item 4", order:4},
-                    {id: 5, name:"item 5", order:5},
-                    {id: 6, name:"item 6", order:6}
-                ],
+                ]
             }
         },
-        components: {},
         computed: {
             listOne () {
                 return this.items.filter(item => item.list === 1)
@@ -128,16 +134,7 @@
             }
         },
         methods: {
-            startDrag (evt, item) {
-                evt.dataTransfer.dropEffect = 'move'
-                evt.dataTransfer.effectAllowed = 'move'
-                evt.dataTransfer.setData('itemID', item.id)
-            },
-            onDrop (evt, list) {
-                const itemID = evt.dataTransfer.getData('itemID')
-                const item = this.items.find(item => item.id == itemID)
-                item.list = list;
-            },
+            // sortable
             onDragStart(e) {
                 console.log("call from `onDragStart` method", e);
             },
@@ -154,7 +151,18 @@
                 this.sort_items.map((data) => {
                     console.log("name: ", data.name, " order: ", data.order)
                 })
-            }
+            },
+            //drag and drop
+            startDrag (evt, item) {
+                evt.dataTransfer.dropEffect = 'move'
+                evt.dataTransfer.effectAllowed = 'move'
+                evt.dataTransfer.setData('itemID', item.id)
+            },
+            onDrop (evt, list) {
+                const itemID = evt.dataTransfer.getData('itemID')
+                const item = this.items.find(item => item.id == itemID)
+                item.list = list;
+            },
         },
     }
 </script>
